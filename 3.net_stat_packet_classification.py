@@ -39,12 +39,10 @@ def packet_data_extraction(pcap_file, pcap_writer, socket_informations):
             # ip 계층 유무 확인
             if not hasattr(packet, 'ip'):   continue
             
-            # tcp, udp 확인
-            proto_num = int(packet.ip.proto)
-            if proto_num not in [6, 17]:    continue    # protocol number: tcp = 6, udp = 17
-            
             # packet 정보
-            proto = 'tcp' if proto_num == 6 else 'udp'
+            proto = next((p for p in ('tcp', 'udp') if hasattr(packet, p)), None)   # tcp, udp 계층 유무 확인
+            if proto is None: continue
+
             src_ip = str(packet.ip.src)
             dst_ip = str(packet.ip.dst)
             src_port = int(packet.tcp.srcport) if proto == 'tcp' else int(packet.udp.srcport)
