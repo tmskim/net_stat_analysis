@@ -8,7 +8,7 @@ from collections import defaultdict, namedtuple
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Setting
-TXT_INTERVAL =  1 * 60  # sec
+TXT_INTERVAL =  30 * 60  # sec
 DETECTION_INTERVAL = 1        # sec
 PATH = Path('C:/Temp/net_stat_data')   # txt 파일 저장 경로
 LOCAL_IP = socket.gethostbyname(socket.gethostname())         # Do not touch!
